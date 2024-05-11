@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://sila.ru/sites/default/files/shutterstock_1394052911_0.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+h2 {
+    padding: 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-file {
+    display: none;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+}

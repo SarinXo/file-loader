@@ -7,11 +7,12 @@
     <changeSet id="create table document" author="EgorovIA">
         <createTable tableName="document" schemaName="app">
             <column name="id" type="UUID">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="file" type="BYTEA">
                 <constraints nullable="false" checkConstraint="LENGTH(binary_data) &lt;= 134217728"/>
             </column>
+            <column name="file_name" type="VARCHAR(30)"/>
         </createTable>
     </changeSet>
 

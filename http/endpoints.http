@@ -1,0 +1,18 @@
+# curl -X POST -F "file=@E:\Загрузки\Kulikov_zadanie_3__kopia.docx" http://localhost:8080/files
+POST http://localhost:8080/files
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="Kulikov_zadanie_3__kopia.docx"
+
+< E:\Загрузки\Kulikov_zadanie_3__kopia.docx
+--WebAppBoundary--
+
+###
+
+GET http://localhost:8080/files/55cf6434-4f3f-4e37-a177-157c8733294f
+
+
+
+
+
