@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.function.ServerRequest;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -44,18 +45,21 @@ public class FileController {
     public ResponseEntity<ByteArrayResource> download(@PathVariable UUID id) {
         val fileEntity = fileServiceImpl.getById(id);
         val resource = new ByteArrayResource(fileEntity.getFile());
-        val headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-
-        val contentDisposition = ContentDisposition.builder("attachment")
-                .filename(fileEntity.getFileName(), StandardCharsets.UTF_8)
-                .build();
-
-        headers.setContentDisposition(contentDisposition);
-        headers.setContentLength(fileEntity.getFile().length);
+        val headers = forDownload(fileEntity.getFileName(), fileEntity.getFile().length);
         return ResponseEntity.ok()
                 .headers(headers)
                 .body(resource);
+    }
+
+    private HttpHeaders forDownload(String fileName, int contentLength){
+        val headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        val contentDisposition = ContentDisposition.builder("attachment")
+                .filename(fileName, StandardCharsets.UTF_8)
+                .build();
+        headers.setContentDisposition(contentDisposition);
+        headers.setContentLength(contentLength);
+        return headers;
     }
 
     @GetMapping
