@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: file-loader
+  profiles:
+    active: dev
