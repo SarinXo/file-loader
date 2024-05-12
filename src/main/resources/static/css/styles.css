@@ -10,10 +10,11 @@ body {
 
 .container {
     width: 500px auto;
-    margin: 50px auto;
+    margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.85);
     padding: 25px;
-    border-radius: 10px;
+    border-radius: 20px;
+    flex: 45%;
 }
 
 h2 {
@@ -39,6 +40,7 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+
 }
 
 .btn:hover {
@@ -52,5 +54,7 @@ h2 {
 
 .d-flex {
     display: flex;
+    gap: 1rem;
     justify-content: space-between;
+    flex-flow: row wrap;
 }
