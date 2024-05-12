@@ -4,47 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload and Download Files</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/items.css">
 </head>
 <body>
-<div class="container-fluid container">
-    <div class="row">
-        <!-- Левый контейнер -->
-        <div class="col-md-6">
-            <div class="upload-section">
-                <h2>Upload File</h2>
-                <form action="/upload" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="file" name="file" id="file" class="form-control-file">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </form>
+<div class="container-fluid container d-flex">
+    <!-- Левый контейнер -->
+    <div class="col-md-6 container">
+        <div class="upload-section">
+            <h2>Upload File</h2>
+            <div class="form-group">
+                <input type="file" id="fileInput" class="form-control-file">
             </div>
-        </div>
-        <!-- Правый контейнер -->
-        <div class="col-md-6">
-            <div class="download-section">
-                <h2>Download File</h2>
-                <select id="fileList" class="form-control">
-                    <option value="file1.txt">File 1</option>
-                    <option value="file2.txt">File 2</option>
-                    <option value="file3.txt">File 3</option>
-                </select>
-                <button id="downloadBtn" class="btn btn-primary mt-3">Download</button>
-            </div>
+            <button id="uploadBtn" class="btn btn-primary">Upload</button>
         </div>
     </div>
+    <!-- Правый контейнер -->
+    <div class="download-section container">
+        <h2>Download File</h2>
+        <div class="scroll-container">
+        </div>
+        <button id="downloadBtn" class="btn btn-primary mt-3">Download</button>
+    </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    // JavaScript код для скачивания файла
-    document.getElementById("downloadBtn").addEventListener("click", function() {
-        var selectedFile = document.getElementById("fileList").value;
-        window.location.href = "/download?filename=" + selectedFile;
-    });
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="js/toastr-options.js" data-keditor="script"></script>
+<script src="js/main.js" ></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    max-width: 500px;
+    width: 500px auto;
     margin: 50px auto;
     background-color: rgba(255, 255, 255, 0.85);
     padding: 25px;
@@ -48,4 +48,9 @@ h2 {
 .btn-primary {
     display: block;
     width: 100%;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
 }
