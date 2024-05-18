@@ -4,6 +4,7 @@ import ilya.coursework.fileloader.model.dto.FileInfoProjection;
 import ilya.coursework.fileloader.model.entity.FileEntity;
 import ilya.coursework.fileloader.repository.FileRepository;
 import ilya.coursework.fileloader.service.FileService;
+import ilya.coursework.fileloader.util.ZipUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +24,13 @@ public class FileServiceImpl implements FileService {
     @PersistenceContext
     private final EntityManager em;
     private final FileRepository fileRepository;
+    private final ZipUtil zipUtil;
 
     @Override
     public UUID save(MultipartFile file) {
         try {
-            val fileEntity = new FileEntity(file.getBytes(), file.getOriginalFilename());
+            val zipArchive = zipUtil.zip(file.getBytes());
+            val fileEntity = new FileEntity(zipArchive, file.getOriginalFilename());
             return fileRepository.save(fileEntity).getId();
         } catch (IOException e) {
             throw new RuntimeException("Cannot save file");
@@ -36,10 +39,14 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public FileEntity getById(UUID id) {
-        return fileRepository.findById(id)
+        val file = fileRepository.findById(id)
                 .orElseThrow(
                         () -> new NoSuchElementException("File doesn't exists")
                 );
+        val zipArchive = file.getFile();
+        val unzip = zipUtil.unzip(zipArchive);
+        file.setFile(unzip);
+        return file;
     }
 
     @Override
