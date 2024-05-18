@@ -18,19 +18,19 @@
     <!-- Левый контейнер -->
     <div class="col-md-6 container">
         <div class="upload-section">
-            <h2>Upload File</h2>
-            <div class="form-group">
-                <input type="file" id="fileInput" class="form-control-file">
+            <h2>Загрузка файла</h2>
+            <div class="input-group">
+                <input type="file" class="form-control" id="fileInput" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                <button class="btn btn-primary" id="uploadBtn">Загрузить</button>
             </div>
-            <button id="uploadBtn" class="btn btn-primary">Upload</button>
         </div>
     </div>
     <!-- Правый контейнер -->
     <div class="download-section container">
-        <h2>Download File</h2>
+        <h2>Скачать файл</h2>
         <div class="scroll-container">
         </div>
-        <button id="downloadBtn" class="btn btn-primary mt-3">Download</button>
+        <button id="downloadBtn" class="btn btn-primary mt-3">Скачать</button>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -16,18 +16,18 @@
     scroll-snap-align: start;
     width: 450px; /* Ширина элемента */
     height: 50px; /* Высота элемента */
-    border: 1px solid #55ff7d;
+    border: 1px solid #000000;
     padding: 10px; /* Отступы внутри элемента */
     border-radius: 10px; /* Закругляем углы */
-    background: #6056ff;
+    margin: 5px auto;
+    background: #007bff;
 }
 
 .scroll-area.selected {
     background-color: lightblue;
 }
 
-.scroll-container,
-.scroll-area {
+.scroll-container {
     margin: 0 auto;
 }
 
