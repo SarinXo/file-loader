@@ -1,0 +1,43 @@
+.scroll-container,
+.scroll-area {
+    max-width: 850px;
+    height: 400px;
+    font-size: 14px;
+}
+
+.scroll-container {
+    overflow: auto;
+    -webkit-scroll-snap-type: y mandatory;
+    -ms-scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory;
+}
+
+.scroll-area {
+    scroll-snap-align: start;
+    width: 450px; /* Ширина элемента */
+    height: 50px; /* Высота элемента */
+    border: 1px solid #000000;
+    padding: 10px; /* Отступы внутри элемента */
+    border-radius: 10px; /* Закругляем углы */
+    margin: 5px auto;
+    background: #007bff;
+}
+
+.scroll-area.selected {
+    background-color: lightblue;
+}
+
+.scroll-container {
+    margin: 0 auto;
+}
+
+.scroll-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.scroll-container {
+    margin-bottom: 20px; /* Добавляем отступ внизу списка */
+}

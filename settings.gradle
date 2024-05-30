@@ -3,3 +3,4 @@ rootProject.name = 'file-loader'
 include 'downloader-app'
 include 'loader-app'
 include 'frontend-app'
+
