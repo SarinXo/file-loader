@@ -2,4 +2,4 @@ spring:
   application:
     name: frontend-app
   profiles:
-    active: local
+    active: dev

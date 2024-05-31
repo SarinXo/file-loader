@@ -1,4 +1,4 @@
-package fileloader.downloaderapp.util;
+package fileloader.loaderapp.util;
 
 import lombok.val;
 import org.springframework.stereotype.Component;
@@ -9,13 +9,14 @@ import java.util.zip.Inflater;
 
 public class ZipUtil {
 
-    public static byte[] unzip(byte[] compressedData){
-        try(val outputStream = new ByteArrayOutputStream(compressedData.length)) {
-            val inflater = new Inflater();
-            inflater.setInput(compressedData);
+    public static byte[] zip(byte[] data){
+        try(val outputStream = new ByteArrayOutputStream(data.length)) {
+            val deflater = new Deflater();
+            deflater.setInput(data);
+            deflater.finish();
             val buffer = new byte[1024];
-            while (!inflater.finished()) {
-                int count = inflater.inflate(buffer);
+            while (!deflater.finished()) {
+                int count = deflater.deflate(buffer);
                 outputStream.write(buffer, 0, count);
             }
             return outputStream.toByteArray();

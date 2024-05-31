@@ -9,7 +9,7 @@ $(document).ready(function() {
         var id = $('.scroll-area.selected').attr('data-value');
 
         if (id) {
-            window.location.href = '/files/' + id;
+            window.location.href = 'http://localhost:8082/files/' + id;
         } else {
             toastr.info('Вы не выбрали файл');
         }
@@ -22,7 +22,7 @@ $(document).ready(function() {
         formData.append('file', file);
 
         $.ajax({
-            url: '/files',
+            url: 'http://localhost:8081/files',
             type: 'POST',
             data: formData,
             processData: false,
@@ -48,7 +48,7 @@ function insertFIleInList(id, fileName){
 
 $(document).ready(function() {
     $.ajax({
-        url: '/files',
+        url: 'http://localhost:8081/files',
         method: 'GET',
         success: function(data) {
             data.forEach(function(file) {

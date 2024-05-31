@@ -1,9 +1,10 @@
-package ilya.coursework.fileloader.controller.rest;
+package ilya.coursework.fileloader.controller;
 
 import ilya.coursework.fileloader.model.dto.FileInfoProjection;
 import ilya.coursework.fileloader.service.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpEntity;

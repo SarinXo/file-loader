@@ -1,27 +1,21 @@
 package fileloader.downloaderapp.controller;
 
 
-import fileloader.downloaderapp.model.dto.FileInfoProjection;
 import fileloader.downloaderapp.service.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.UUID;
+
+import static fileloader.downloaderapp.util.HeadersUtil.forDownload;
 
 @Service
 @RestController
@@ -30,35 +24,15 @@ import java.util.UUID;
 public class FileController {
     private final FileService fileServiceImpl;
 
-    @PostMapping
-    public UUID upload(@RequestBody MultipartFile file) {
-        return fileServiceImpl.save(file);
-    }
-
+    @Cacheable("fileCache")
     @GetMapping("/{id}")
     public ResponseEntity<ByteArrayResource> download(@PathVariable UUID id) {
         val fileEntity = fileServiceImpl.getById(id);
-        val resource = new ByteArrayResource(fileEntity.getFile());
+        val file = new ByteArrayResource(fileEntity.getFile());
         val headers = forDownload(fileEntity.getFileName(), fileEntity.getFile().length);
         return ResponseEntity.ok()
                 .headers(headers)
-                .body(resource);
-    }
-
-    private HttpHeaders forDownload(String fileName, int contentLength){
-        val headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        val contentDisposition = ContentDisposition.builder("attachment")
-                .filename(fileName, StandardCharsets.UTF_8)
-                .build();
-        headers.setContentDisposition(contentDisposition);
-        headers.setContentLength(contentLength);
-        return headers;
-    }
-
-    @GetMapping
-    public List<FileInfoProjection> getAllFileNames() {
-        return fileServiceImpl.getIdListFiles();
+                .body(file);
     }
 }
 
